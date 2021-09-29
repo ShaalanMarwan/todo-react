@@ -19,6 +19,7 @@ function App() {
   ]);
   const addTodo = (text) => {
     console.log("todo from app");
+    // todosList.push({text, isCompleted: false})
     const newTodos = [...todosList, { text, isCompleted: false }];
     setTodosList(newTodos);
   };
@@ -27,14 +28,30 @@ function App() {
   // this function take index of task and mark it as completed
   const markAsCompleted = (index) => {
     const newTodos = [...todosList];
-    newTodos[index].isCompleted = true;
+    if(newTodos[index].isCompleted){
+
+      newTodos[index].isCompleted = false;
+    }else{
+      newTodos[index].isCompleted = true;
+
+    }
     setTodosList(newTodos);
 
+  }
+  // make a function to delete a task
+  // this function will be passed to TodoList
+  // this function take index of task and delete it
+  const deleteTodo = (index) => {
+    const newTodos = [...todosList];
+    newTodos.splice(index, 1);
+    setTodosList(newTodos);
   }
   return (
     <div className="App">
       <FormTodo addTodo={addTodo} />
-      <TodoList todos={todosList} completed={markAsCompleted} />
+      <TodoList todos={todosList} 
+      deleteTodo={deleteTodo} 
+      markAsCompleted={markAsCompleted} />
     </div>
   );
 }

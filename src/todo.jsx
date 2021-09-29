@@ -7,7 +7,9 @@ const Todo = (props) => {
     <div style={{ display: "flex", justifyContent: "space-between" }}>
       <span
         style={{
-          textDecoration: props.todo.isCompleted ? "line-through" : "none",
+          textDecoration: props.todo.isCompleted ?
+           "line-through"
+            : "none",
         }}
       >
         {props.todo.text}
@@ -15,12 +17,13 @@ const Todo = (props) => {
       <div>
         <Button
           onClick={() => {
-            props.checked(props.index);
+            props.markAsCompleted(props.index);
           }}
         >
           ✅
         </Button>
-        <Button onClick={() => {}}>❌</Button>
+        <Button onClick={() => {props.deleteTodo(props.index)}}>
+         ❌</Button>
       </div>
     </div>
   );
